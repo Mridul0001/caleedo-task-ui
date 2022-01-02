@@ -1,0 +1,31 @@
+<div class="loader-container" *ngIf="isLoading"><mat-spinner></mat-spinner></div>
+<div *ngIf="!isLoading" class="table-container">
+    <table mat-table [dataSource]="dataValues" class="mat-elevation-z8 values-table">
+        <!-- Customer ID Column -->
+        <ng-container matColumnDef="custId">
+          <th mat-header-cell *matHeaderCellDef> Cust ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.custId}} </td>
+        </ng-container>
+      
+        <!-- Parameter Name Column -->
+        <ng-container matColumnDef="param">
+          <th mat-header-cell *matHeaderCellDef> Parameter </th>
+          <td mat-cell *matCellDef="let element"> {{params[element.paramId]}} </td>
+        </ng-container>
+      
+        <!-- Value Column -->
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Value </th>
+          <td mat-cell *matCellDef="let element" [ngClass]="isValid(element.value,element.paramId)?'inside':'outside'"> {{element.value}} </td>
+        </ng-container>
+
+         <!-- Date Column -->
+         <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.localDateTime | date:'medium'}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

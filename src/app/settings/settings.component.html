@@ -1,0 +1,27 @@
+<div class="update-threshold-form-container">
+    <form class="threshold-form" [formGroup]="thresholdForm" (ngSubmit)="handleUpdate()">
+        <h3>Configure parameters values</h3>
+        <mat-form-field appearance="outline">
+            <mat-label for="param">Select Parameter</mat-label>
+            <mat-select id="param" required formControlName="paramId">
+                <mat-option>------</mat-option>
+                <mat-option *ngFor="let p of params" [value]="p.id">{{p.value}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="thresholdForm.controls['paramId'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label for="lower-input">Lower Value:</mat-label>
+            <!--not adding min and max because we have visual validation in ui-->
+            <input matInput id="lower-input" type="number" required placeholder="Lower value" formControlName="lowerValue"/>
+            <mat-error *ngIf="thresholdForm.controls['lowerValue'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label for="upper-input">Upper Value:</mat-label>
+            <!--not adding min and max because we have visual validation in ui-->
+            <input matInput id="upper-input" type="number" required placeholder="Upper value" formControlName="upperValue"/>
+            <mat-error *ngIf="thresholdForm.controls['upperValue'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <div><button mat-raised-button color="primary" type="submit">Update</button></div>
+    </form>
+    <div class="api-message">{{message}}</div>
+</div>

@@ -1,0 +1,14 @@
+.threshold-form{
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+}
+::ng-deep .mat-form-field{
+    width: 70%;
+}
+
+.api-message{
+    width: 100%;
+    text-align: center;
+    color:green;
+}

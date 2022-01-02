@@ -1,0 +1,29 @@
+<div class="add-value-form-container">
+    <form class="add-value-form" [formGroup]="addValueForm" (ngSubmit)="handleSubmit()">
+        <h3>Add new value</h3>
+        <mat-form-field appearance="outline">
+            <mat-label for="cust">Select Customer</mat-label>
+            <mat-select id="cust" required formControlName="custId">
+                <mat-option>------</mat-option>
+                <mat-option *ngFor="let c of customers" [value]="c.id">{{c.value}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addValueForm.controls['custId'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label for="param">Select Parameter</mat-label>
+            <mat-select id="param" required formControlName="paramId">
+                <mat-option>------</mat-option>
+                <mat-option *ngFor="let p of params" [value]="p.id">{{p.value}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="addValueForm.controls['paramId'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label for="measurement">Lower Value:</mat-label>
+            <!--not adding min and max because we have visual validation in ui-->
+            <input matInput id="measurement" type="number" required placeholder="Lower value" formControlName="value"/>
+            <mat-error *ngIf="addValueForm.controls['value'].invalid">{{genericErrorMessage}}</mat-error>
+        </mat-form-field>
+        <div><button mat-raised-button color="primary" type="submit">Add Value</button></div>
+    </form>
+    <div class="api-message">{{message}}</div>
+</div>
